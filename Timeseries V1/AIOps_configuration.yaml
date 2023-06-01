@@ -1,0 +1,120 @@
+Input:
+ Input_Database_connection: s3_connection_details
+ Input_data_time_period_for_insights_in_days: 180
+ Input_data_archive_period_in_days: 90
+Output:
+ Output_Database_connection: s3_connection_details
+ Insights_storage_connection: Redshift_configurations
+ Output_data_archive_period: 90
+Model:
+ Model_storage:
+ Model_configs:
+Parameters/metric:
+ Metric_1: CPU utilization
+ Metric_2: Disk utilization
+ Metric_3: Memory utilization
+Resources:
+ boot_up_time: 5mins
+ down_time: 10mins
+Metric_1_config:
+ Stage_1_lower_threshold: 0
+ Stage_1_Upper_threshold: 10
+ Stage_2_lower_threshold: 10
+ Stage_2_Upper_threshold: 20
+ Stage_3_lower_threshold: 20
+ Stage_3_Upper_threshold: 30
+ Stage_4_lower_threshold: 30
+ Stage_4_Upper_threshold: 50
+ Stage_5_lower_threshold: 50
+ Stage_5_Upper_threshold: 60
+ Stage_6_lower_threshold: 60
+ Stage_6_Upper_threshold: 80
+ Stage_7_lower_threshold: 80
+ Stage_7_Upper_threshold: 80
+Metric_2_config:
+ Stage_1_lower_threshold: 0
+ Stage_1_Upper_threshold: 10
+ Stage_2_lower_threshold: 10
+ Stage_2_Upper_threshold: 20
+ Stage_3_lower_threshold: 20
+ Stage_3_Upper_threshold: 30
+ Stage_4_lower_threshold: 30
+ Stage_4_Upper_threshold: 50
+ Stage_5_lower_threshold: 50
+ Stage_5_Upper_threshold: 65
+ Stage_6_lower_threshold: 65
+ Stage_6_Upper_threshold: 85
+ Stage_7_lower_threshold: 85
+ Stage_7_Upper_threshold: 85
+Metric_3_config:
+ Stage_1_lower_threshold: 0
+ Stage_1_Upper_threshold: 10
+ Stage_2_lower_threshold: 10
+ Stage_2_Upper_threshold: 20
+ Stage_3_lower_threshold: 20
+ Stage_3_Upper_threshold: 30
+ Stage_4_lower_threshold: 30
+ Stage_4_Upper_threshold: 50
+ Stage_5_lower_threshold: 50
+ Stage_5_Upper_threshold: 65
+ Stage_6_lower_threshold: 65
+ Stage_6_Upper_threshold: 85
+ Stage_7_lower_threshold: 85
+ Stage_7_Upper_threshold: 85
+Real_time_data:
+ Real_time_data_connection:
+ List_of_metrics: [metric_1, metric_2, metric_3…etc.]
+ #*Metrics need to be entered
+Forecasted_data:
+ Forecasted_data_storage:
+ Forecasted_dashboard_connection:
+ #User can enter their metric names & thresholds.
+ Existing_System config:
+Metric_1:
+ Scale_up_config_threshold:
+ Scale_up_time_period: 10Mins
+#Analyze Existing configurations & Future requirements, calculate scaleup_values
+# Check with scaleup config threshold, if calculated scaleup value <=scaleup config threshold, scalup system.
+ Scale_down_config_threshold:
+ Scale_down_time_period: 10Mins
+# Analyze Existing configurations & Future requirements (based on scale down time period value), calculate scale down values.
+# Check with scale down config threshold, if calculated scaleup value <= scale down config threshold, scale down system.
+ Action_1: run scale_down script.
+ Action_2: run scale_up script.
+ Stage_1: Action_1
+ Stage_2: Action_1 
+ Stage_3: No_Action
+ Stage_4: No_Action
+ Stage_5: No_Action
+ Stage_6: Action_2
+ Stage_7: Action_2
+Metric_2:
+ Action_1: Scale up database.
+ Action_2: scale down or archive data in database & free up storage
+ Stage_1: Action_1
+ Stage_2: Action_1 
+ Stage_3: No_Action
+ Stage_4: No_Action
+ Stage_5: No_Action
+ Stage_6: Action_2
+ Stage_7: Action_2
+Metric_3:
+ Stage_1: Action_1
+ Stage_2: Action_1 
+ Stage_3: No_Action
+ Stage_4: No_Action
+ Stage_5: No_Action
+ Stage_6: Action_2
+ Stage_7: Action_2
+Metric_1_Time_To_Monitor:
+ last_hours: 0
+ last_minutes: 0
+ last_seconds: 5
+Metric_2_Time_To_Monitor:
+ last_hours: 0
+ last_minutes: 0
+ last_seconds: 5
+Metric_3_Time_To_Monitor:
+ last_hours: 0
+ last_minutes: 0
+ last_seconds: 5
